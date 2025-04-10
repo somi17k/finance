@@ -1,6 +1,2 @@
-{
-  "version": 2,
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
-}
+{ "builds": [ { "src": "client/package.json", "use": "@vercel/node" } ], 
+"rewrites": [ { "source": "/(.*)", "destination": "/index.html" } ] }
