@@ -1,4 +1,7 @@
 {
-    "rootDirectory": "client"
+    "builds": [
+      { "src": "client/package.json", "use": "@vercel/node" }
+    ],
+    "ignoreCommand": "echo 'Ignoring package-lock.json'"
   }
   
