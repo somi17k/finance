@@ -6,7 +6,7 @@ const Resources = () => {
   const [input, setInput] = useState('');
 
   const fetchResources = async () => {
-    const res = await axios.get('${process.env.REACT_APP_API_BASE}/resources');
+    const res = await axios.get(`${import.meta.env.REACT_APP_API_BASE}/resources`);
     setResources(res.data);
   };
   
