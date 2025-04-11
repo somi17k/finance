@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Typography, AppBar, Toolbar, Box, Button } from '@mui/material';
-import Dashboard from './components/Dashboard';
+import Dashboard from './component/Dashboard';
 
 function App() {
   return (

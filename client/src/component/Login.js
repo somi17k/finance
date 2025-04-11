@@ -1,29 +1,22 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import React from 'react';
+import { Container, Box, TextField, Button, Typography, Paper } from '@mui/material';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
-
-  const handleLogin = () => {
-    if (username === 'farmer' && password === 'admin123') {
-      navigate('/dashboard');
-    } else {
-      setError('Invalid username or password!');
-    }
-  };
-
   return (
-    <div className="login-container">
-      <h2>Farm Management Login</h2>
-      <input placeholder="Username" onChange={e => setUsername(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
-      <button onClick={handleLogin}>Login</button>
-      {error && <p className="error-msg">{error}</p>}
-    </div>
+    <Container maxWidth="sm">
+      <Paper elevation={3} sx={{ p: 4, mt: 8 }}>
+        <Typography variant="h5" align="center" gutterBottom>
+          Login to Farm Manager
+        </Typography>
+        <Box component="form" noValidate autoComplete="off">
+          <TextField label="Email" variant="outlined" fullWidth margin="normal" />
+          <TextField label="Password" type="password" variant="outlined" fullWidth margin="normal" />
+          <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+            Login
+          </Button>
+        </Box>
+      </Paper>
+    </Container>
   );
 };
 

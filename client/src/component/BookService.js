@@ -1,46 +1,63 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { Container, Typography, TextField, Button, MenuItem, Paper, Box } from '@mui/material';
 
 const BookService = () => {
   const [formData, setFormData] = useState({
     name: '',
-    phone: '',
-    address: '',
-    preferredDate: '',
-    serviceType: 'visit',
+    service: '',
+    date: ''
   });
-  const [message, setMessage] = useState('');
 
-  const handleChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const services = ['Soil Testing', 'Tractor Setup', 'Financial Planning', 'Software Installation'];
+
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value});
   };
 
-  const handleSubmit = async () => {
-    const res = await axios.post('${process.env.REACT_APP_API_BASE}/bookings', formData);
-    setMessage(res.data.message);
-    setFormData({
-      name: '',
-      phone: '',
-      address: '',
-      preferredDate: '',
-      serviceType: 'visit',
-    });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    alert("Booking submitted!");
   };
 
   return (
-    <div>
-      <h2>Book a Visit or Executive Call</h2>
-      <input name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} />
-      <input name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} />
-      <input name="address" placeholder="Farm Address" value={formData.address} onChange={handleChange} />
-      <input type="datetime-local" name="preferredDate" value={formData.preferredDate} onChange={handleChange} />
-      <select name="serviceType" value={formData.serviceType} onChange={handleChange}>
-        <option value="visit">On-field Visit</option>
-        <option value="call">Executive Call</option>
-      </select>
-      <button onClick={handleSubmit}>Book Now</button>
-      {message && <p>{message}</p>}
-    </div>
+    <Container maxWidth="sm">
+      <Paper elevation={3} sx={{ p: 4, mt: 6 }}>
+        <Typography variant="h5" align="center" gutterBottom>
+          Book On-Field Professional
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit}>
+          <TextField name="name" label="Your Name" fullWidth margin="normal" onChange={handleChange} />
+          <TextField
+            select
+            label="Select Service"
+            name="service"
+            fullWidth
+            margin="normal"
+            value={formData.service}
+            onChange={handleChange}
+          >
+            {services.map(service => (
+              <MenuItem key={service} value={service}>
+                {service}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            type="date"
+            name="date"
+            label="Preferred Date"
+            InputLabelProps={{ shrink: true }}
+            fullWidth
+            margin="normal"
+            onChange={handleChange}
+          />
+          <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
+            Book Now
+          </Button>
+        </Box>
+      </Paper>
+    </Container>
   );
 };
 
