@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
-import Finance from './Finance';
-import Resources from './Resources';
-import BookService from './BookService';
+import React from 'react';
+import { Grid, Card, CardContent, Typography, Button } from '@mui/material';
 
 const Dashboard = () => {
-  const [section, setSection] = useState('finance');
-
   return (
-    <div className="dashboard-container">
-      <h1>Welcome to Farm Dashboard</h1>
-      <div className="nav-bar">
-        <button onClick={() => setSection('finance')}>Financial Overview</button>
-        <button onClick={() => setSection('resources')}>Resource Tracker</button>
-        <button onClick={() => setSection('book')}>Book Executive</button>
-      </div>
-      {section === 'finance' && <Finance />}
-      {section === 'resources' && <Resources />}
-      {section === 'book' && <BookService />}
-    </div>
+    <Grid container spacing={3}>
+      <Grid item xs={12} sm={6}>
+        <Card>
+          <CardContent>
+            <Typography variant="h5">Resource Tracker</Typography>
+            <Typography>Monitor tractors, fertilizers, and more.</Typography>
+            <Button sx={{ mt: 2 }} variant="contained">View Resources</Button>
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <Card>
+          <CardContent>
+            <Typography variant="h5">Financial Overview</Typography>
+            <Typography>Track income and expenses.</Typography>
+            <Button sx={{ mt: 2 }} variant="contained">Finance Details</Button>
+          </CardContent>
+        </Card>
+      </Grid>
+    </Grid>
   );
 };
 
